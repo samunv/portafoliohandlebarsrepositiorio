@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+</head>
+<body>
+  <h1>{{message}}</h1>
+
+  <h2>Lista de miembros</h2>
+  <ul>
+    {{#each data}}
+      <li>Miembro: {{nombre}} {{apellidos}}, Teléfono: {{telefono}}, Correo: {{correo}}, LinkedIn: {{linkedin_enlace}}, GitHub: {{github_enlace}}</li>
+    {{else}}
+      <li>No hay datos disponibles.</li>
+    {{/each}}
+  </ul>
+</body>
+</html>
