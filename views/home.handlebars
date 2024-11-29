@@ -7,6 +7,12 @@
 </head>
 <body>
   {{> header}}
-  <h1>Presentación del Equipo</h1>
+  <h1>Equipo Jorge-Samuel</h1>
+  <p>Bienvenido al portfolio del equipo Jorge-Samuel de desarrollo freelance de aplicaciones web y móviles. Trabajamos de forma coordinada y organizada, con una comunicación fluida que nos permite crear una arquitectura y un código solido. Aquí podrás descubrir toda la información relevante acerca de cada uno de nosotros.</p>
+  {{#each data}}
+        <h3>{{nombre}} {{apellidos}}</h3>
+        <img src={{foto}} alt="" width="100" height="100">
+        <p>{{actividad}}</p>
+  {{/each}}
 </body>
 </html>
