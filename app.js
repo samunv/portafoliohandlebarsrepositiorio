@@ -73,16 +73,12 @@ app.get("/contacto", (req, res) => {
 // Ruta a la pantalla de detalles
 app.get("/detalle", (req, res) => {
   res.render("detalle", {
-    title: "Contáctanos",
-    message: "Esta es la página de contacto",
   });
 });
 
 // Ruta a la pantalla de trabajos
 app.get("/trabajos", (req, res) => {
   res.render("trabajos", {
-    title: "Contáctanos",
-    message: "Esta es la página de contacto",
   });
 });
 
