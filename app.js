@@ -20,9 +20,11 @@ connection.connect((err) => {
     console.error("Error conectando a la base de datos:", err.message);
     return;
   }
-  console.log("Conexión exitosa a la base de datos MySQL");
+  console.log("Conexión exitosa a la base de datos.");
 });
 
+// Establecer la carpeta public
+app.use(express.static(path.join(__dirname, 'public')));
 // Establecer la carpeta de vistas (views)
 app.set("views", path.join(__dirname, "views"));
 
@@ -86,5 +88,5 @@ const PUERTO = 3100;
 
 // Iniciar el servidor
 app.listen(PUERTO, () => {
-  console.log(`Servidor escuchando en http://localhost:${PUERTO}`);
+  console.log(`Servidor corriendo en http://localhost:${PUERTO}`);
 });
