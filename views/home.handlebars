@@ -4,16 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{title}}</title>
+  <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
-  {{> header}}
-  <h1>Equipo Jorge-Samuel</h1>
-  <p>Bienvenido al portfolio del equipo Jorge-Samuel de desarrollo freelance de aplicaciones web y móviles. Trabajamos de forma coordinada y organizada, con una comunicación fluida que nos permite crear una arquitectura y un código solido. Aquí podrás descubrir toda la información relevante acerca de cada uno de nosotros.</p>
-  {{#each data}}
-        <h3>{{nombre}} {{apellidos}}</h3>
-        <img src="/images/{{foto}}" alt="" width="200" height="200">
-        <p>{{actividad}}</p>
+  <!--{{> header}}-->
+  <section id="presentacion">
+    <h1>Equipo Jorge-Samuel</h1>
+    <p>Bienvenido al portfolio del equipo Jorge-Samuel de desarrollo freelance de aplicaciones web y móviles. Trabajamos de forma coordinada y organizada, con una comunicación fluida que nos permite crear una arquitectura y un código solido. Aquí podrás descubrir toda la información relevante acerca de cada uno de nosotros.</p>
+  </section>
 
-  {{/each}}
+   <section id="seccion-principal">
+     {{#each data}}
+      <div class="contenedores">
+        
+        <img src="/images/{{foto}}" alt="" width="150" height="150">
+        <h3>{{nombre}} {{apellidos}}</h3>
+        <p>{{actividad}}</p>
+      </div>
+    {{/each}}
+  </section>
+ 
 </body>
 </html>

@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: #cdcdcd;
+}
+
+#presentacion {
+    margin-top: 50px;
+    text-align: center;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#presentacion h1 {
+    font-size: 50px;
+    background-image: linear-gradient(to right, #d469ff, #4891ff);
+    /* El degradado */
+    -webkit-background-clip: text;
+    /* Aplica el fondo al texto */
+    color: transparent;
+    /* Hace el color de texto transparente para que solo se vea el fondo */
+    margin-bottom: 5px;
+}
+
+#presentacion p {
+    width: 50%;
+    font-size: 20px;
+}
+
+#seccion-principal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #333336;
+    padding: 30px;
+    margin: 10px;
+    cursor: pointer;
+    color:white;
+    transition: background-image 0.5s ease-in-out; /* Transición del fondo */
+}
+
+.contenedores:hover{
+    background-image: linear-gradient(to right, #d469ff, #4891ff);
+}
+
+.contenedores img {
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.contenedores h3,
+p{
+    padding: 5px;
+}
