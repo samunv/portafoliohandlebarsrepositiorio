@@ -53,29 +53,39 @@ app.get("/", (req, res) => {
 
 // Ruta a la pantalla de contacto
 app.get("/contacto", (req, res) => {
-  res.render("contacto", {
-    title: "Contáctanos",
-    message: "Esta es la página de contacto",
+  const selectMiembros = "SELECT * FROM miembros";
+
+  connection.query(selectMiembros, (err, results) => {
+    if (err) {
+      console.error("Error ejecutando la consulta:", err.message);
+      res.status(500).send("Error al obtener datos de la base de datos");
+      return;
+    }
+
+    res.render("contacto", {
+      title: "Contáctanos",
+      message: "Esta es la página de contacto",
+      data: results,
+    });
   });
 });
 
 // Ruta a la pantalla de detalles
 app.get("/detalle", (req, res) => {
-    res.render("detalle", {
-      title: "Contáctanos",
-      message: "Esta es la página de contacto",
-    });
+  res.render("detalle", {
+    title: "Contáctanos",
+    message: "Esta es la página de contacto",
   });
-
+});
 
 // Ruta a la pantalla de trabajos
 app.get("/trabajos", (req, res) => {
-    res.render("trabajos", {
-      title: "Contáctanos",
-      message: "Esta es la página de contacto",
-    });
+  res.render("trabajos", {
+    title: "Contáctanos",
+    message: "Esta es la página de contacto",
   });
- 
+});
+
 const PUERTO = 3100;
 
 // Iniciar el servidor
