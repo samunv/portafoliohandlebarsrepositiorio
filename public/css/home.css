@@ -14,7 +14,7 @@ body {
 }
 
 #presentacion {
-    margin-top: 50px;
+    margin-top: 30px;
     text-align: center;
     padding: 30px;
     display: flex;
@@ -45,8 +45,9 @@ body {
     justify-content: center;
 }
 
-.contenedores {
+.contenedores a{
     display: flex;
+    text-decoration: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -56,9 +57,11 @@ body {
     cursor: pointer;
     color:white;
     transition: background-image 0.5s ease-in-out; /* Transición del fondo */
+    width: 350px;
+    height: 250px;
 }
 
-.contenedores:hover{
+.contenedores a:hover{
     background-image: linear-gradient(to right, #d469ff, #4891ff);
 }
 
@@ -71,3 +74,4 @@ body {
 p{
     padding: 5px;
 }
+

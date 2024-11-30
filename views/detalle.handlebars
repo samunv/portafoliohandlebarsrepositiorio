@@ -1,1 +1,51 @@
- {{> header}}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+
+  <section id="detalle-miembro">
+    <h1>{{miembro.nombre}} {{miembro.apellidos}}</h1>
+    <p><strong>Actividad:</strong> {{miembro.actividad}}</p>
+    <p><strong>Teléfono:</strong> {{miembro.telefono}}</p>
+    <p><strong>Correo:</strong> {{miembro.correo}}</p>
+    <p><strong>LinkedIn:</strong> <a href="{{miembro.linkedin_enlace}}" target="_blank">{{miembro.linkedin_enlace}}</a></p>
+    <p><strong>GitHub:</strong> <a href="{{miembro.github_enlace}}" target="_blank">{{miembro.github_enlace}}</a></p>
+
+    <h3>Idiomas</h3>
+    {{#if miembro.idiomas}}
+      <p>{{miembro.idiomas}}</p>
+    {{else}}
+      <p>No hay idiomas disponibles.</p>
+    {{/if}}
+
+    <h3>Tecnologías</h3>
+    {{#if miembro.tecnologias}}
+      <p>{{miembro.tecnologias}}</p>
+    {{else}}
+      <p>No hay tecnologías disponibles.</p>
+    {{/if}}
+
+    <h3>Proyectos</h3>
+    {{#if proyectos.length}}
+      <ul>
+        {{#each proyectos}}
+          <li>
+            <strong>{{this.nombre}}</strong> - {{this.descripcion}}<br>
+            
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>No hay proyectos disponibles.</p>
+    {{/if}}
+
+    <a href="/">Volver al inicio</a>
+  </section>
+
+</body>
+</html>

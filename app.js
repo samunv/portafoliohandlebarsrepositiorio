@@ -24,7 +24,7 @@ connection.connect((err) => {
 });
 
 // Establecer la carpeta public
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 // Establecer la carpeta de vistas (views)
 app.set("views", path.join(__dirname, "views"));
 
@@ -46,42 +46,65 @@ app.get("/", (req, res) => {
     console.log("Resultados de la consulta:", results); // Muestra los datos en la consola
 
     res.render("home", {
-      title: "Mi Proyecto Express-Handlebars",
-      message: "¡Hola, estos son los datos obtenidos!",
+      title: "Equipo Jorge-Samuel",
       data: results, // Pasar los resultados a la vista Handlebars
     });
   });
 });
 
-// Ruta a la pantalla de contacto
-app.get("/contacto", (req, res) => {
-  const selectMiembros = "SELECT * FROM miembros";
+app.get("/detalle/:id", (req, res) => {
+  const { id } = req.params;
 
-  connection.query(selectMiembros, (err, results) => {
+  const selectMiembro = `
+    SELECT m.*, 
+           GROUP_CONCAT(DISTINCT i.nombre ORDER BY i.nombre) AS idiomas, 
+           GROUP_CONCAT(DISTINCT t.nombre ORDER BY t.nombre) AS tecnologias,
+           p.*  
+    FROM miembros m
+    LEFT JOIN miembro_idiomas mi ON m.idMiembro = mi.idMiembro
+    LEFT JOIN idiomas i ON mi.idIdioma = i.idIdioma
+    LEFT JOIN miembro_tecnologias mt ON m.idMiembro = mt.idMiembro
+    LEFT JOIN tecnologias t ON mt.idTecnologia = t.idTecnologia
+    LEFT JOIN proyectospersonales p ON m.idMiembro = p.idMiembro
+    WHERE m.idMiembro = ?
+    GROUP BY m.idMiembro;
+  `;
+
+  connection.query(selectMiembro, [id], (err, result) => {
     if (err) {
       console.error("Error ejecutando la consulta:", err.message);
-      res.status(500).send("Error al obtener datos de la base de datos");
+      res.status(500).send("Error al obtener datos del miembro");
       return;
     }
 
-    res.render("contacto", {
-      title: "Contáctanos",
-      message: "Esta es la página de contacto",
-      data: results,
-    });
-  });
-});
+    if (result.length === 0) {
+      res.status(404).send("Miembro no encontrado");
+      return;
+    }
 
-// Ruta a la pantalla de detalles
-app.get("/detalle", (req, res) => {
-  res.render("detalle", {
+    const miembro = result[0]; // El miembro seleccionado
+
+    // Separamos los proyectos para pasarlos de forma adecuada
+    const proyectos = result.map((row) => {
+      return {
+        idProyecto: row.idProyecto,
+        nombre: row.nombre,  // Asegúrate de que estos son los campos correctos
+        descripcion: row.descripcion,  // Dependiendo de lo que tenga tu tabla
+        fecha: row.fecha,  // Otros campos que puedas tener
+      };
+    }).filter((row) => row.idProyecto);  // Filtra para evitar proyectos vacíos si los hay
+
+    res.render("detalle", {
+      title: `Detalles de ${miembro.nombre} ${miembro.apellidos}`,
+      miembro,
+      proyectos,  // Pasa los proyectos a la vista
+    });
   });
 });
 
 // Ruta a la pantalla de trabajos
 app.get("/trabajos", (req, res) => {
-  res.render("trabajos", {
-  });
+  res.render("trabajos", {});
 });
 
 const PUERTO = 3100;
