@@ -8,7 +8,8 @@
   <script src="/js/home.js"></script>
 </head>
 <body>
-  <!--{{> header}}-->
+  {{> header}}
+
   <section id="presentacion">
     <h1>Equipo Jorge-Samuel</h1>
     <p>Bienvenido al portfolio del equipo Jorge-Samuel de desarrollo freelance de aplicaciones web y móviles. Trabajamos de forma coordinada y organizada, con una comunicación fluida que nos permite crear una arquitectura y un código solido. Aquí podrás descubrir toda la información relevante acerca de cada uno de nosotros.</p>
@@ -20,7 +21,7 @@
       data-correo="{{correo}}", data-linkedin="{{linkedin_enlace}}" data-github="{{github_enlace}}">
       <a href="/detalle/{{idMiembro}}">
         <img src="/images/{{foto}}" alt="" width="150" height="150">
-        <h3>{{nombre}} {{apellidos}}</h3>
+        <h3>{{nombreMiembro}} {{apellidos}}</h3>
         <p>{{actividad}}</p>
         </a>
       </div>

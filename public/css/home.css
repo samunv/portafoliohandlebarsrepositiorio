@@ -14,7 +14,7 @@ body {
 }
 
 #presentacion {
-    margin-top: 30px;
+    margin-top: 50px;
     text-align: center;
     padding: 30px;
     display: flex;
@@ -73,5 +73,49 @@ body {
 .contenedores h3,
 p{
     padding: 5px;
+}
+
+#caja-enlace-trabajos{
+padding: 10px;
+
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    background-color: #333336;
+}
+header h1{
+    background-image: linear-gradient(to right, #d469ff, #4891ff);
+    /* El degradado */
+    -webkit-background-clip: text;
+    /* Aplica el fondo al texto */
+    color: transparent;
+    font-size: 40px;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+}
+nav li {
+    list-style: none;
+}
+nav li a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+
+nav li a:hover{
+    text-decoration: underline;
 }
 

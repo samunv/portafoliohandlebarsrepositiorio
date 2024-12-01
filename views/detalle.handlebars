@@ -1,51 +1,70 @@
-<!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{title}}</title>
-  <link rel="stylesheet" href="/css/home.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/detalle.css" />
+  </head>
+  <body>
 
-  <section id="detalle-miembro">
-    <h1>{{miembro.nombreMiembro}} {{miembro.apellidos}}</h1>
-    <p><strong>Actividad:</strong> {{miembro.actividad}}</p>
-    <p><strong>Teléfono:</strong> {{miembro.telefono}}</p>
-    <p><strong>Correo:</strong> {{miembro.correo}}</p>
-    <p><strong>LinkedIn:</strong> <a href="{{miembro.linkedin_enlace}}" target="_blank">{{miembro.linkedin_enlace}}</a></p>
-    <p><strong>GitHub:</strong> <a href="{{miembro.github_enlace}}" target="_blank">{{miembro.github_enlace}}</a></p>
+    <section id="detalle-miembro">
+      <h1>{{miembro.nombreMiembro}} {{miembro.apellidos}}</h1>
+      <p><strong>Actividad:</strong> {{miembro.actividad}}</p>
+      <p><strong>Teléfono:</strong> {{miembro.telefono}}</p>
+      <p><strong>Correo:</strong> {{miembro.correo}}</p>
+      <p><strong>LinkedIn:</strong>
+        <a
+          href="{{miembro.linkedin_enlace}}"
+          target="_blank"
+        >{{miembro.linkedin_enlace}}</a></p>
+      <p><strong>GitHub:</strong>
+        <a
+          href="{{miembro.github_enlace}}"
+          target="_blank"
+        >{{miembro.github_enlace}}</a></p>
 
-    <h3>Idiomas</h3>
-    {{#if miembro.idiomas}}
-      <p>{{miembro.idiomas}}</p>
-    {{else}}
-      <p>No hay idiomas disponibles.</p>
-    {{/if}}
+      <h3>Idiomas</h3>
+      {{#if idiomas.length}}
+        <ul>
+          {{#each idiomas}}
+            <li>{{this.nombreIdioma}}</li>
+          {{/each}}
+        </ul>
+      {{else}}
+        <p>No hay idiomas disponibles.</p>
+      {{/if}}
 
-    <h3>Tecnologías</h3>
-    {{#if miembro.tecnologias}}
-      <p>{{miembro.tecnologias}}</p>
-    {{else}}
-      <p>No hay tecnologías disponibles.</p>
-    {{/if}}
+      <h3>Tecnologías</h3>
+      {{#if tecnologias.length}}
+        <ul>
+          {{#each tecnologias}}
+            <li>
+              <strong>{{this.nombreTecnologia}}</strong>:
+              <img src="{{this.icono}}" alt="" width="50" height="50">
+            </li>
+          {{/each}}
+        </ul>
+      {{else}}
+        <p>No hay tecnologías disponibles.</p>
+      {{/if}}
 
-    <h3>Proyectos</h3>
-    {{#if proyectos.length}}
-      <ul>
-        {{#each proyectos}}
-          <li>
-            <strong>{{this.nombre}}</strong> - {{this.descripcion}}<br>
-            
-          </li>
-        {{/each}}
-      </ul>
-    {{else}}
-      <p>No hay proyectos disponibles.</p>
-    {{/if}}
+      <h3>Proyectos</h3>
+      {{#if proyectos.length}}
+        <ul>
+          {{#each proyectos}}
+            <li>
+              <strong>{{this.nombreProyecto}}</strong>:
+              {{this.descripcion}}<br />
 
-    <a href="/">Volver al inicio</a>
-  </section>
+            </li>
+          {{/each}}
+        </ul>
+      {{else}}
+        <p>No hay proyectos disponibles.</p>
+      {{/if}}
 
-</body>
+      <a href="/">Volver al inicio</a>
+    </section>
+
+  </body>
 </html>
