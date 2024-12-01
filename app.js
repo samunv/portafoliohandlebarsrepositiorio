@@ -51,7 +51,6 @@ app.get("/", (req, res) => {
     });
   });
 });
-
 app.get("/detalle/:id", (req, res) => {
   const { id } = req.params;
   console.log(`ID recibido: ${id}`); // Verifica el ID recibido
@@ -84,8 +83,8 @@ app.get("/detalle/:id", (req, res) => {
         return;
       }
 
-      console.log("Proyectos del miembro:", proyectos);
-
+      console.log("Proyectos del miembro:", proyectos); // Verifica el contenido de los proyectos
+    
       // Consulta SQL para obtener los idiomas del miembro
       const selectIdiomas = `
         SELECT i.nombreIdioma
