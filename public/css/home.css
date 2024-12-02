@@ -56,7 +56,7 @@ body {
     margin: 10px;
     cursor: pointer;
     color:white;
-    transition: background-image 0.5s ease-in-out; /* Transición del fondo */
+    transition: all 0.3s ease-in-out; /* Transición del fondo */
     width: 350px;
     height: 350px;
     border-radius: 15px;
@@ -64,6 +64,7 @@ body {
 
 .contenedores a:hover{
     background-image: linear-gradient(to right, #d469ff, #4891ff);
+    transform: translateY(-15px);
 }
 
 .contenedores img {
