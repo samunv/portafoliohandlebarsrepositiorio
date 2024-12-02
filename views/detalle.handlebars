@@ -1,104 +1,96 @@
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/css/detalle.css" />
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/footer.css">
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/css/detalle.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+</head>
+<body>
   {{> header}}
-  <section id="seccion-titulo"><h1>Hola, soy {{miembro.nombreMiembro}} {{miembro.apellidos}}</h1></section>
-    <section id="detalle-miembro">
 
-      <section id="info-principal">
-      <div id="info-foto"><img src="/images/{{miembro.foto}}" alt=""></div>
-      <div id="info-texto">
-        <p> Soy {{miembro.actividad}}</p>
+  <section id="seccion-titulo">
+    <h1>Detalles de {{miembro.nombreMiembro}} {{miembro.apellidos}}</h1>
+  </section>
 
-        <div id="apartado-contacto">
-      <p class="contacto"><img src="/images/call_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="" class="iconos"> {{miembro.telefono}}</p>
-      <p class="contacto"><img src="/images/mail_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="" class="iconos"> {{miembro.correo}}</p>
-     
-        
-        <a
-          href="{{miembro.linkedin_enlace}}"
-          target="_blank"
-          class="contacto"
-        ><img src="/images/linkedinlogo.png" alt="" class="iconos">Linkedin</a></p>
-       
+  <section id="detalle-miembro">
+    <section id="info-principal">
+      <div id="info-foto">
 
-
-      
-        <a
-          href="{{miembro.github_enlace}}"
-          target="_blank"
-          class="contacto"
-        ><img src="/images/githublogo.png" alt="" class="iconos">Github</a>
-
-        </div>
-
-<div id="apartado-idiomas">
-        <h3>Idiomas</h3>
-      {{#if idiomas.length}}
-        <ul>
-          {{#each idiomas}}
-            <li>{{this.nombreIdioma}}</li>
-          {{/each}}
-        </ul>
-      {{else}}
-        <p>No hay idiomas disponibles.</p>
-      {{/if}}
-</div>
-
+        <img src="/images/{{miembro.foto}}" alt="" />
       </div>
+      <div id="info-texto">
+        <h3>Sobre Mí</h3>
+        <p>Soy {{miembro.actividad}}</p>
 
-      </section>
-      
-      
+          <div id="apartado-idiomas">
+            <h3>Idiomas</h3>
+            {{#if idiomas.length}}
+              <ul>
+                {{#each idiomas}}
+                  <li>{{this.nombreIdioma}}</li>
+                {{/each}}
+              </ul>
+            {{else}}
+              <p>No hay idiomas disponibles.</p>
+            {{/if}}
+          </div>
+        
+      </div>
+    </section>
 
-<section id="tecnologias">
-  <h1>Tecnologías</h1>
+
+    <section id="apartado-contacto">
+            <p class="contacto">
+              <img src="/images/call_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="" class="iconos" />
+              {{miembro.telefono}}
+            </p>
+            <p class="contacto">
+              <img src="/images/mail_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="" class="iconos" />
+              {{miembro.correo}}
+            </p>
+            <a href="{{miembro.linkedin_enlace}}" target="_blank" class="contacto">
+              <img src="/images/linkedinlogo.png" alt="" class="iconos" />Linkedin
+            </a>
+            <a href="{{miembro.github_enlace}}" target="_blank" class="contacto">
+              <img src="/images/githublogo.png" alt="" class="iconos" />Github
+            </a>
+    </section>
+
+    <section id="tecnologias">
+      <h1>Tecnologías</h1>
       {{#if tecnologias.length}}
         <ul>
           {{#each tecnologias}}
             <li>
-              <img src="{{this.icono}}" alt="" width="50" height="50">
+              <img src="{{this.icono}}" alt="" width="50" height="50" />
               <strong>{{this.nombreTecnologia}}</strong>
             </li>
           {{/each}}
         </ul>
       {{else}}
         <p>No hay tecnologías disponibles.</p>
-      {{/if}}</section>
-      
-
-<section id="proyectos">
-  <h1>Proyecto más destacado</h1>
-  <div id="caja-proyecto">
-          {{#if proyectos.length}}
-
-          {{#each proyectos}}
-
-              <h2>{{this.nombreProyecto}}</h2>
-              {{this.descripcion}}<br />
-              <img src="/images/{{this.fotoProyecto}}" alt="">
-
-
-          {{/each}}
-
-      {{else}}
-        <p>No hay proyectos disponibles.</p>
       {{/if}}
-  </div>
-
-</section>
-      
-
-      
     </section>
 
-    {{>footer}}
-  </body>
+    <section id="proyectos">
+      <h1>Proyecto más destacado</h1>
+      <div id="caja-proyecto">
+        {{#if proyectos.length}}
+          {{#each proyectos}}
+            <h2>{{this.nombreProyecto}}</h2>
+            {{this.descripcion}}<br />
+            <img src="/images/{{this.fotoProyecto}}" alt="" />
+          {{/each}}
+        {{else}}
+          <p>No hay proyectos disponibles.</p>
+        {{/if}}
+      </div>
+    </section>
+  </section>
+
+  {{> footer}}
+</body>
 </html>
