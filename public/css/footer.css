@@ -7,7 +7,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-top: 3px solid #4891ff;
     margin-top: 100px;
 }
 
@@ -20,9 +19,7 @@
 .footer-logo h1 {
     font-size: 24px;
     margin-bottom: 10px;
-    background-image: linear-gradient(to right, #d469ff, #4891ff);
-    -webkit-background-clip: text;
-    color: transparent;
+    color: #cdcdcd;
 }
 
 .footer-links {
