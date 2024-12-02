@@ -21,8 +21,6 @@
   </section>
 
   <!-- Sección de Trabajos en Equipo -->
-  <section id="seccion-principal">
-    <h1>Trabajos en Equipo</h1>
     <section id="seccion-principal">
     {{#if trabajos}}
       <ul>
@@ -32,6 +30,7 @@
             <p><strong>Empresa:</strong> {{empresa}}</p>
             <p><strong>Descripción:</strong> {{descripcion}}</p>
             <p><strong>Tecnologías:</strong> {{tecnologias}}</p>
+             <img src="/images/{{foto}}" alt="" width="600" height="600">
           </li>
         {{/each}}
       </ul>
