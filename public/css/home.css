@@ -14,7 +14,7 @@ body {
 }
 
 #presentacion {
-    margin-top: 60px;
+    margin-top: 10px;
     text-align: center;
     padding: 30px;
     display: flex;
@@ -73,6 +73,7 @@ body {
 .contenedores h3,
 p{
     padding: 10px;
+    text-align: center;
 }
 
 #caja-enlace-trabajos{
@@ -85,11 +86,11 @@ header{
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    position: fixed;
-    top: 0%;
     width: 100%;
     background-color: #333336;
 }
+
+
 header h1 {
     background-image: linear-gradient(to right, #d469ff, #4891ff);
     /* Degradado inicial */
