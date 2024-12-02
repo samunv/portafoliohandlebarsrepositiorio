@@ -48,7 +48,8 @@ body {
 
 .trabajo-item {
   width: 650px;
-  margin: 0 auto; /* Centra la lista */
+  margin: 0 auto;
+  /* Centra la lista */
   padding: 0;
   list-style: none;
   background-color: #333336;
@@ -72,127 +73,4 @@ body {
 .trabajo-item strong {
   font-weight: bold;
   color: #ffffff;
-}
-
-/* Estilos de encabezado */
-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  background-color: #333336;
-}
-
-header h1 {
-  background-image: linear-gradient(to right, #d469ff, #4891ff);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: 50px;
-  transition: background-image 0.3s ease;
-}
-
-header h1:hover {
-  background-image: linear-gradient(to right, #4891ff, #d469ff); 
-}
-
-/* Estilos de navegación */
-nav {
-  display: flex;
-  flex-direction: row;
-}
-
-nav li {
-  list-style: none;
-}
-
-nav li a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  position: relative;
-  padding: 5px 10px;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-nav li a:hover {
-  text-decoration: none;
-  background-color: #4891ff;
-  color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transform: scale(1.1);
-}
-
-nav li a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #d469ff;
-  transform: scaleX(0);
-  transform-origin: bottom right;
-  transition: transform 0.3s ease;
-}
-
-nav li a:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
-/* Estilos del pie de página */
-.footer {
-  width: 100%; /* El footer ocupará siempre todo el ancho */
-  background-color: #333336;
-  color: #cdcdcd;
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-top: 3px solid #4891ff;
-  margin-top: 100px;
-}
-
-.footer-content {
-  width: 1350px; 
-    text-align: center;
-}
-
-.footer-logo h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  background-image: linear-gradient(to right, #d469ff, #4891ff);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.footer-links a {
-  text-decoration: none;
-  color: #cdcdcd;
-  margin: 0 10px;
-  font-size: 16px;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #4891ff;
-  transform: scale(1.1);
-}
-
-.footer-content p {
-  font-size: 14px;
-  margin-top: 10px;
 }
