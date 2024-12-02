@@ -46,7 +46,8 @@ body {
 }
 .trabajo-item {
   width: 650px;
-  margin: 0 auto; /* Centra la lista */
+  margin: 0 auto;
+  /* Centra la lista */
   padding: 0;
   list-style: none;
   background-color: #333336;
@@ -82,3 +83,4 @@ body {
   width: 100%; /* Ocupa el 100% del ancho disponible */
   height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
 }
+
