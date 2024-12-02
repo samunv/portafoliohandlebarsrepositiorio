@@ -161,6 +161,9 @@ GROUP BY t.idTrabajo;
  });
 });
 
+app.get('/politica', (req, res) => {
+  res.render('politica'); // No uses la extensión ".handlebars", Express la añade automáticamente
+});
 
 const PUERTO = 3100;
 
@@ -168,3 +171,4 @@ const PUERTO = 3100;
 app.listen(PUERTO, () => {
   console.log(`Servidor corriendo en http://localhost:${PUERTO}`);
 });
+
