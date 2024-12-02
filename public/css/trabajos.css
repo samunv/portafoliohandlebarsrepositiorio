@@ -80,6 +80,7 @@ body {
 }
 
 .imagenes {
+  border-radius: 10px;
   width: 100%; /* Ocupa el 100% del ancho disponible */
   height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
 }
