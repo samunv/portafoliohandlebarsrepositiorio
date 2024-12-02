@@ -75,21 +75,24 @@
       
 
 <section id="proyectos">
-  <h3>Proyectos</h3>
-      {{#if proyectos.length}}
-        <ul>
-          {{#each proyectos}}
-            <li>
-              <strong>{{this.nombreProyecto}}</strong>:
-              {{this.descripcion}}<br />
-              <img src="/images/{{this.fotoProyecto}}" alt="" width="300" height="140">
+  <h1>Proyecto más destacado</h1>
+  <div id="caja-proyecto">
+          {{#if proyectos.length}}
 
-            </li>
+          {{#each proyectos}}
+
+              <h2>{{this.nombreProyecto}}</h2>
+              {{this.descripcion}}<br />
+              <img src="/images/{{this.fotoProyecto}}" alt="">
+
+
           {{/each}}
-        </ul>
+
       {{else}}
         <p>No hay proyectos disponibles.</p>
       {{/if}}
+  </div>
+
 </section>
       
 
