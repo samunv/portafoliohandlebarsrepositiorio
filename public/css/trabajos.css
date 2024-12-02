@@ -1,9 +1,11 @@
+/* Reset de márgenes y padding por defecto */
 * {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Estilos para el cuerpo */
 body {
   display: flex;
   flex-direction: column;
@@ -13,6 +15,7 @@ body {
   color: #cdcdcd;
 }
 
+/* Estilos de la sección de proyectos */
 #proyectos-section {
   margin-top: 10px;
   text-align: center;
@@ -25,22 +28,54 @@ body {
 #proyectos-section h1 {
   font-size: 50px;
   background-image: linear-gradient(to right, #d469ff, #4891ff);
-  /* El degradado */
   -webkit-background-clip: text;
-  /* Aplica el fondo al texto */
   color: transparent;
-  /* Hace el color de texto transparente para que solo se vea el fondo */
-  margin-bottom: 5px;
+  margin-bottom: 20px;
 }
 
 #proyectos-section p {
-  width: 50%;
   font-size: 20px;
+}
+
+/* Estilo para la sección principal */
+#seccion-principal h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
 }
 
 
 
-header{
+.trabajo-item {
+  width: 650px;
+  margin: 0 auto; /* Centra la lista */
+  padding: 0;
+  list-style: none;
+  background-color: #333336;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.trabajo-item h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.trabajo-item p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.trabajo-item strong {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Estilos de encabezado */
+header {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -51,26 +86,26 @@ header{
 
 header h1 {
   background-image: linear-gradient(to right, #d469ff, #4891ff);
-  /* Degradado inicial */
   -webkit-background-clip: text;
-  /* Aplica el fondo al texto */
   color: transparent;
   font-size: 50px;
-  transition: background-image 0.3s ease; /* Animación suave */
+  transition: background-image 0.3s ease;
 }
 
 header h1:hover {
   background-image: linear-gradient(to right, #4891ff, #d469ff); 
-  /* Degradado invertido */
 }
 
-nav{
+/* Estilos de navegación */
+nav {
   display: flex;
   flex-direction: row;
 }
+
 nav li {
   list-style: none;
 }
+
 nav li a {
   text-decoration: none;
   color: white;
@@ -86,31 +121,33 @@ nav li a {
 
 nav li a:hover {
   text-decoration: none;
-  background-color: #4891ff; /* Cambio de color de fondo al pasar el cursor */
+  background-color: #4891ff;
   color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
-  transform: scale(1.1); /* Escala el enlace al pasar el cursor */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
 }
+
 nav li a::after {
-  content: ''; /* No se muestra ningún texto, solo la línea */
-  position: absolute; /* Coloca la línea de forma absoluta dentro del enlace */
-  bottom: 0; /* Alinea la línea al fondo del enlace */
-  left: 0; /* Alinea la línea al borde izquierdo del enlace */
-  width: 100%; /* La línea ocupa todo el ancho del enlace */
-  height: 3px; /* Altura de la línea */
-  background-color: #d469ff; /* Color de la línea de subrayado */
-  transform: scaleX(0); /* Inicialmente, la línea está oculta (escala X en 0) */
-  transform-origin: bottom right; /* La animación empieza desde el borde inferior derecho */
-  transition: transform 0.3s ease; /* Transición suave en el cambio de escala */
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #d469ff;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
 }
 
 nav li a:hover::after {
-  transform: scaleX(1); /* La línea se escala a su tamaño original (escala X en 1) */
-  transform-origin: bottom left; /* La animación de la línea ahora comienza desde el borde inferior izquierdo */
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
+/* Estilos del pie de página */
 .footer {
-  width: 100%;
+  width: 100%; /* El footer ocupará siempre todo el ancho */
   background-color: #333336;
   color: #cdcdcd;
   padding: 20px 0;
@@ -123,9 +160,8 @@ nav li a:hover::after {
 }
 
 .footer-content {
-  width: 90%;
-  max-width: 1200px;
-  text-align: center;
+  width: 1350px; 
+    text-align: center;
 }
 
 .footer-logo h1 {
@@ -160,5 +196,3 @@ nav li a:hover::after {
   font-size: 14px;
   margin-top: 10px;
 }
-
-

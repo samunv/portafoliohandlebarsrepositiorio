@@ -11,17 +11,35 @@
 
   <!-- Sección principal de la página -->
   <section id="proyectos-section">
-    <h1 id="titulo-proyectos">Nuestros Trabajo</h1>
-    <p>Bienvenido a la sección de trabajos. Aquí podrás explorar las aplicaciones y soluciones desarrolladas por nuestro equipo, cada una con su enfoque único y funcionalidad específica. Nos dedicamos a crear proyectos innovadores y bien estructurados, aplicando nuestra experiencia en el desarrollo de aplicaciones web y móviles. Descubre cómo cada proyecto refleja nuestro compromiso con la calidad, la eficiencia y la creatividad en el desarrollo tecnológico.</p>
-</section>
- <section id="seccion-principal">
-
-    <p>Aqui los trabajos</p>
-    <p>Y los trabajos </p>
-    <p> 
-        
+    <h1 id="titulo-proyectos">Nuestros Trabajos</h1>
+    <p>
+      Bienvenido a la sección de trabajos. Aquí podrás explorar las aplicaciones y soluciones desarrolladas por nuestro equipo, 
+      cada una con su enfoque único y funcionalidad específica. Nos dedicamos a crear proyectos innovadores y bien estructurados, 
+      aplicando nuestra experiencia en el desarrollo de aplicaciones web y móviles. Descubre cómo cada proyecto refleja nuestro 
+      compromiso con la calidad, la eficiencia y la creatividad en el desarrollo tecnológico.
     </p>
- </section>
-{{>footer}}
+  </section>
+
+  <!-- Sección de Trabajos en Equipo -->
+  <section id="seccion-principal">
+    <h1>Trabajos en Equipo</h1>
+    <section id="seccion-principal">
+    {{#if trabajos}}
+      <ul>
+        {{#each trabajos}}
+          <li class="trabajo-item">
+            <h2 class="trabajo-titulo">{{titulo}}</h2>
+            <p><strong>Empresa:</strong> {{empresa}}</p>
+            <p><strong>Descripción:</strong> {{descripcion}}</p>
+            <p><strong>Tecnologías:</strong> {{tecnologias}}</p>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>No hay trabajos disponibles en este momento.</p>
+    {{/if}}
+  </section>
+
+  {{> footer}} 
 </body>
 </html>

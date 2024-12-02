@@ -133,14 +133,34 @@ app.get("/detalle/:id", (req, res) => {
   });
 });
 
-
-
-
-
 // Ruta a la pantalla de trabajos
 app.get("/trabajos", (req, res) => {
-  res.render("trabajos", {});
+   // Consulta para obtener los trabajos
+   const queryTrabajos = `
+  SELECT 
+    t.idTrabajo, 
+    t.titulo, 
+    t.empresa, 
+    t.descripcion, 
+    t.foto,
+    GROUP_CONCAT(te.nombreTecnologia ORDER BY te.nombreTecnologia) AS tecnologias
+FROM trabajosenequipo t
+LEFT JOIN trabajo_tecnologias tt ON t.idTrabajo = tt.idTrabajo
+LEFT JOIN tecnologias te ON tt.idTecnologia = te.idTecnologia
+GROUP BY t.idTrabajo;
+
+ `;
+
+ connection.query(queryTrabajos, (err, resultados) => {
+   if (err) {
+     console.error("Error al obtener los trabajos:", err);
+     res.status(500).send("Error en el servidor");
+   } else {
+     res.render("trabajos", { trabajos: resultados });
+   }
+ });
 });
+
 
 const PUERTO = 3100;
 
