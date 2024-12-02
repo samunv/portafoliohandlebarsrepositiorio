@@ -30,7 +30,7 @@ body {
   background-image: linear-gradient(to right, #d469ff, #4891ff);
   -webkit-background-clip: text;
   color: transparent;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 #proyectos-section p {
@@ -43,23 +43,21 @@ body {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 30px;
-}
-.trabajo-item {
+}.trabajo-item {
   width: 650px;
-  margin: 0 auto;
-  /* Centra la lista */
-  padding: 0;
+  margin: 40px auto; /* Aumenta la separación vertical */
   list-style: none;
   background-color: #333336;
-  padding: 25px;
-  margin-bottom: 20px;
+  padding: 35px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
-  overflow: hidden;
   display: flex;
-    flex-direction: column;
-    justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+
 
 .trabajo-item h2 {
   font-size: 1.8rem;
@@ -79,6 +77,10 @@ body {
   color: #ffffff;
 }
 
+.trabajo-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 .imagenes {
   border-radius: 10px;
   width: 100%; /* Ocupa el 100% del ancho disponible */
