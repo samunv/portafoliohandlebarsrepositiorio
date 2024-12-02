@@ -1,0 +1,70 @@
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    background-color: #333336;
+}
+
+
+header h1 {
+    background-image: linear-gradient(to right, #d469ff, #4891ff);
+    /* Degradado inicial */
+    -webkit-background-clip: text;
+    /* Aplica el fondo al texto */
+    color: transparent;
+    font-size: 50px;
+    transition: background-image 0.3s ease; /* Animación suave */
+}
+
+header h1:hover {
+    background-image: linear-gradient(to right, #4891ff, #d469ff); 
+    /* Degradado invertido */
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+}
+nav li {
+    list-style: none;
+}
+nav li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+nav li a:hover {
+    text-decoration: none;
+    background-color: #4891ff; /* Cambio de color de fondo al pasar el cursor */
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transform: scale(1.1); /* Escala el enlace al pasar el cursor */
+}
+nav li a::after {
+    content: ''; /* No se muestra ningún texto, solo la línea */
+    position: absolute; /* Coloca la línea de forma absoluta dentro del enlace */
+    bottom: 0; /* Alinea la línea al fondo del enlace */
+    left: 0; /* Alinea la línea al borde izquierdo del enlace */
+    width: 100%; /* La línea ocupa todo el ancho del enlace */
+    height: 3px; /* Altura de la línea */
+    background-color: #d469ff; /* Color de la línea de subrayado */
+    transform: scaleX(0); /* Inicialmente, la línea está oculta (escala X en 0) */
+    transform-origin: bottom right; /* La animación empieza desde el borde inferior derecho */
+    transition: transform 0.3s ease; /* Transición suave en el cambio de escala */
+}
+
+nav li a:hover::after {
+    transform: scaleX(1); /* La línea se escala a su tamaño original (escala X en 1) */
+    transform-origin: bottom left; /* La animación de la línea ahora comienza desde el borde inferior izquierdo */
+}
+
