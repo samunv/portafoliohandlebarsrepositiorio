@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: #cdcdcd;
+}
+
+
+#seccion-titulo {
+    margin-top: 10px;
+    text-align: center;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+}
+
+#seccion-titulo h1 {
+    font-size: 50px;
+    background-image: linear-gradient(to right, #d469ff, #4891ff);
+    /* El degradado */
+    -webkit-background-clip: text;
+    /* Aplica el fondo al texto */
+    color: transparent;
+    /* Hace el color de texto transparente para que solo se vea el fondo */
+    margin-bottom: 5px;
+}
+
+.contacto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    color: white;
+}
+
+#apartado-contacto {
+    margin-top: 30px;
+}
+
+#info-principal {
+    background-color: #333336;
+    width: 50%;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    color: white;
+    border-radius: 15px;
+}
+
+#info-principal #info-foto {
+    padding: 20px;
+}
+
+#info-principal #info-foto img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+#info-principal #info-texto {
+    padding: 20px;
+}
+
+
+#info-principal ul li {
+    list-style-type: none;
+}
+
+#apartado-idiomas {
+    margin-top: 30px;
+}
+
+
+.iconos {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+
+#tecnologias {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+
+}
+
+#tecnologias h1{
+    font-size: 40px;
+   margin-bottom: 30px;
+    text-align: center;
+}
+
+#tecnologias ul li {
+    list-style: none;
+    background-color: #333336;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+#tecnologias ul li:hover{
+    transform: scale(1.1);
+}
+
+#tecnologias ul li img {
+    margin-right: 10px;
+}
+
+#tecnologias ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
