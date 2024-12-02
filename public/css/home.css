@@ -58,7 +58,7 @@ body {
     color:white;
     transition: all 0.3s ease-in-out; /* Transición del fondo */
     width: 350px;
-    height: 350px;
+    height: 270px;
     border-radius: 15px;
 }
 
@@ -72,8 +72,7 @@ body {
     padding: 10px;
 }
 
-.contenedores h3,
-p{
+.contenedores h3{
     padding: 10px;
     text-align: center;
 }
