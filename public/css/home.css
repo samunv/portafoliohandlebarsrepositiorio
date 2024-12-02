@@ -30,7 +30,7 @@ body {
     /* Aplica el fondo al texto */
     color: transparent;
     /* Hace el color de texto transparente para que solo se vea el fondo */
-    margin-bottom: 5px;
+    margin-bottom: 30px;
 }
 
 #presentacion p {
