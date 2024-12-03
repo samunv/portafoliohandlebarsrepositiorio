@@ -1,174 +1,107 @@
 const express = require("express");
 const { engine } = require("express-handlebars");
 const path = require("path");
+const mysql = require("mysql2/promise");
 
 const app = express();
 
-const mysql = require("mysql2");
-
-// Configura la conexión
-const connection = mysql.createConnection({
+// Configuración de la conexión a la base de datos usando mysql2 con promesas
+const pool = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "",
   database: "bdportafolio",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-// Probar la conexión
-connection.connect((err) => {
-  if (err) {
-    console.error("Error conectando a la base de datos:", err.message);
-    return;
-  }
-  console.log("Conexión exitosa a la base de datos.");
-});
-
-// Establecer la carpeta public
+// Configuración de la carpeta estática y vistas
 app.use(express.static(path.join(__dirname, "public")));
-// Establecer la carpeta de vistas (views)
 app.set("views", path.join(__dirname, "views"));
-
-// Configurar express-handlebars como motor de plantillas
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 
 // Ruta principal
-app.get("/", (req, res) => {
-  const selectMiembros = "SELECT * FROM miembros";
-
-  connection.query(selectMiembros, (err, results) => {
-    if (err) {
-      console.error("Error ejecutando la consulta:", err.message);
-      res.status(500).send("Error al obtener datos de la base de datos");
-      return;
-    }
-
-    console.log("Resultados de la consulta:", results); // Muestra los datos en la consola
-
+app.get("/", async (req, res) => {
+  try {
+    const [miembros] = await pool.query("SELECT * FROM miembros");
     res.render("home", {
       title: "Equipo Jorge-Samuel",
-      data: results, // Pasar los resultados a la vista Handlebars
+      data: miembros,
     });
-  });
+  } catch (error) {
+    console.error("Error obteniendo los datos:", error.message);
+    res.status(500).send("Error al obtener datos de la base de datos");
+  }
 });
-app.get("/detalle/:id", (req, res) => {
+
+// Ruta detalle
+app.get("/detalle/:id", async (req, res) => {
   const { id } = req.params;
-  console.log(`ID recibido: ${id}`); // Verifica el ID recibido
 
-  // Consulta SQL para obtener los datos del miembro
-  const selectMiembro = `SELECT * FROM miembros WHERE idMiembro = ?`;
-
-  connection.query(selectMiembro, [id], (err, results) => {
-    if (err) {
-      console.error("Error ejecutando la consulta:", err.message);
-      res.status(500).send("Error al obtener datos del miembro");
-      return;
+  try {
+    // Consulta del miembro
+    const [miembro] = await pool.query("SELECT * FROM miembros WHERE idMiembro = ?", [id]);
+    if (miembro.length === 0) {
+      return res.status(404).send("Miembro no encontrado");
     }
 
-    if (results.length === 0) {
-      console.log("No se encontró el miembro con ID:", id);
-      res.status(404).send("Miembro no encontrado");
-      return;
-    }
+    // Consultas de proyectos, idiomas y tecnologías
+    const [proyectos] = await pool.query("SELECT * FROM proyectospersonales WHERE idMiembro = ?", [id]);
+    const [idiomas] = await pool.query(`
+      SELECT i.nombreIdioma
+      FROM miembro_idiomas mi
+      JOIN idiomas i ON mi.idIdioma = i.idIdioma
+      WHERE mi.idMiembro = ?
+    `, [id]);
+    const [tecnologias] = await pool.query(`
+      SELECT t.*
+      FROM miembro_tecnologias mt
+      JOIN tecnologias t ON mt.idTecnologia = t.idTecnologia
+      WHERE mt.idMiembro = ?
+    `, [id]);
 
-    console.log("Resultados de la consulta del miembro:", results[0]);
-
-    // Consulta SQL para obtener los proyectos personales del miembro
-    const selectProyectos = `SELECT * FROM proyectospersonales WHERE idMiembro = ?`;
-
-    connection.query(selectProyectos, [id], (err, proyectos) => {
-      if (err) {
-        console.error("Error ejecutando la consulta de proyectos:", err.message);
-        res.status(500).send("Error al obtener proyectos del miembro");
-        return;
-      }
-
-      console.log("Proyectos del miembro:", proyectos); // Verifica el contenido de los proyectos
-    
-      // Consulta SQL para obtener los idiomas del miembro
-      const selectIdiomas = `
-        SELECT i.nombreIdioma
-        FROM miembro_idiomas mi
-        JOIN idiomas i ON mi.idIdioma = i.idIdioma
-        WHERE mi.idMiembro = ?
-      `;
-
-      connection.query(selectIdiomas, [id], (err, idiomas) => {
-        if (err) {
-          console.error("Error ejecutando la consulta de idiomas:", err.message);
-          res.status(500).send("Error al obtener idiomas del miembro");
-          return;
-        }
-
-        console.log("Idiomas del miembro:", idiomas);
-
-        // Consulta SQL para obtener las tecnologías del miembro
-        const selectTecnologias = `
-          SELECT t.*
-          FROM miembro_tecnologias mt
-          JOIN tecnologias t ON mt.idTecnologia = t.idTecnologia
-          WHERE mt.idMiembro = ?
-        `;
-
-        connection.query(selectTecnologias, [id], (err, tecnologias) => {
-          if (err) {
-            console.error("Error ejecutando la consulta de tecnologías:", err.message);
-            res.status(500).send("Error al obtener tecnologías del miembro");
-            return;
-          }
-
-          console.log("Tecnologías del miembro:", tecnologias);
-
-          // Pasar los resultados del miembro, proyectos, idiomas y tecnologías a la vista Handlebars
-          res.render("detalle", {
-            title: "Detalles del Miembro",
-            miembro: results[0],
-            proyectos: proyectos,
-            idiomas: idiomas,
-            tecnologias: tecnologias // Pasar las tecnologías obtenidas
-          });
-        });
-      });
+    // Renderizar la vista con los datos obtenidos
+    res.render("detalle", {
+      title: "Detalles del Miembro",
+      miembro: miembro[0],
+      proyectos,
+      idiomas,
+      tecnologias,
     });
-  });
+  } catch (error) {
+    console.error("Error obteniendo los datos del miembro:", error.message);
+    res.status(500).send("Error al obtener los datos del miembro");
+  }
 });
 
 // Ruta a la pantalla de trabajos
-app.get("/trabajos", (req, res) => {
-   // Consulta para obtener los trabajos
-   const queryTrabajos = `
-  SELECT 
-    t.idTrabajo, 
-    t.titulo, 
-    t.empresa, 
-    t.descripcion, 
-    t.foto,
-    GROUP_CONCAT(te.nombreTecnologia ORDER BY te.nombreTecnologia) AS tecnologias
-FROM trabajosenequipo t
-LEFT JOIN trabajo_tecnologias tt ON t.idTrabajo = tt.idTrabajo
-LEFT JOIN tecnologias te ON tt.idTecnologia = te.idTecnologia
-GROUP BY t.idTrabajo;
-
- `;
-
- connection.query(queryTrabajos, (err, resultados) => {
-   if (err) {
-     console.error("Error al obtener los trabajos:", err);
-     res.status(500).send("Error en el servidor");
-   } else {
-     res.render("trabajos", { trabajos: resultados });
-   }
- });
+app.get("/trabajos", async (req, res) => {
+  try {
+    const [trabajos] = await pool.query(`
+      SELECT 
+        t.*,
+        GROUP_CONCAT(te.nombreTecnologia ORDER BY te.nombreTecnologia) AS tecnologias
+      FROM trabajosenequipo t
+      LEFT JOIN trabajo_tecnologias tt ON t.idTrabajo = tt.idTrabajo
+      LEFT JOIN tecnologias te ON tt.idTecnologia = te.idTecnologia
+      GROUP BY t.idTrabajo;
+    `);
+    res.render("trabajos", { trabajos });
+  } catch (error) {
+    console.error("Error obteniendo los trabajos:", error.message);
+    res.status(500).send("Error al obtener trabajos del servidor");
+  }
 });
 
-app.get('/politica', (req, res) => {
-  res.render('politica'); // No uses la extensión ".handlebars", Express la añade automáticamente
+// Ruta para política
+app.get("/politica", (req, res) => {
+  res.render("politica");
 });
-
-const PUERTO = 3100;
 
 // Iniciar el servidor
+const PUERTO = 3100;
 app.listen(PUERTO, () => {
   console.log(`Servidor corriendo en http://localhost:${PUERTO}`);
 });
-
