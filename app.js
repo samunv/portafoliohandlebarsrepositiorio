@@ -42,33 +42,45 @@ app.get("/detalle/:id", async (req, res) => {
 
   try {
     // Consulta del miembro
-    const [miembro] = await pool.query("SELECT * FROM miembros WHERE idMiembro = ?", [id]);
+    const [miembro] = await pool.query(
+      "SELECT * FROM miembros WHERE idMiembro = ?",
+      [id]
+    );
     if (miembro.length === 0) {
       return res.status(404).send("Miembro no encontrado");
     }
 
     // Consultas de proyectos, idiomas y tecnologías
-    const [proyectos] = await pool.query("SELECT * FROM proyectospersonales WHERE idMiembro = ?", [id]);
-    const [idiomas] = await pool.query(`
+    const [proyectos] = await pool.query(
+      "SELECT * FROM proyectospersonales WHERE idMiembro = ?",
+      [id]
+    );
+    const [idiomas] = await pool.query(
+      `
       SELECT i.nombreIdioma
       FROM miembro_idiomas mi
       JOIN idiomas i ON mi.idIdioma = i.idIdioma
       WHERE mi.idMiembro = ?
-    `, [id]);
-    const [tecnologias] = await pool.query(`
+    `,
+      [id]
+    );
+    const [tecnologias] = await pool.query(
+      `
       SELECT t.*
       FROM miembro_tecnologias mt
       JOIN tecnologias t ON mt.idTecnologia = t.idTecnologia
       WHERE mt.idMiembro = ?
-    `, [id]);
+    `,
+      [id]
+    );
 
     // Renderizar la vista con los datos obtenidos
     res.render("detalle", {
       title: "Detalles del Miembro",
       miembro: miembro[0],
-      proyectos,
-      idiomas,
-      tecnologias,
+      proyectos: proyectos,
+      idiomas: idiomas,
+      tecnologias: tecnologias,
     });
   } catch (error) {
     console.error("Error obteniendo los datos del miembro:", error.message);
