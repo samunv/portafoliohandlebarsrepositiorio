@@ -25,6 +25,7 @@
         <h3>Sobre Mí</h3>
         <p>Soy {{miembro.actividad}}</p>
 
+        <div id="idiomas-y-titulaciones">
           <div id="apartado-idiomas">
             <h3>Idiomas</h3>
             {{#if idiomas.length}}
@@ -37,7 +38,20 @@
               <p>No hay idiomas disponibles.</p>
             {{/if}}
           </div>
-        
+
+          <div id="apartado-titulaciones">
+            <h3>Titulaciones</h3>
+              {{#if idiomas.length}}
+              <ul>
+                {{#each titulaciones}}
+                  <li>{{this.nombreTitulacion}}</li>
+                {{/each}}
+              </ul>
+            {{else}}
+              <p>No hay titulaciones disponibles.</p>
+            {{/if}}
+          </div>
+        </div>
       </div>
     </section>
 

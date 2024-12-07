@@ -30,17 +30,29 @@ router.get("/detalle/:id", async (req, res) => {
       return res.status(404).send("Miembro no encontrado");
     }
 
-    // Consultas de proyectos, idiomas y tecnologías
+    // Consultas de proyectos, idiomas, tecnologías y titulaciones
     const [proyectos] = await pool.query(
       "SELECT * FROM proyectospersonales WHERE idMiembro = ?",
       [id]
     );
     const [idiomas] = await pool.query(
-      `SELECT i.nombreIdioma FROM miembro_idiomas mi JOIN idiomas i ON mi.idIdioma = i.idIdioma WHERE mi.idMiembro = ?`,
+      `SELECT i.nombreIdioma 
+       FROM miembro_idiomas mi 
+       JOIN idiomas i ON mi.idIdioma = i.idIdioma 
+       WHERE mi.idMiembro = ?`,
       [id]
     );
     const [tecnologias] = await pool.query(
-      `SELECT t.* FROM miembro_tecnologias mt JOIN tecnologias t ON mt.idTecnologia = t.idTecnologia WHERE mt.idMiembro = ?`,
+      `SELECT t.* 
+       FROM miembro_tecnologias mt 
+       JOIN tecnologias t ON mt.idTecnologia = t.idTecnologia 
+       WHERE mt.idMiembro = ?`,
+      [id]
+    );
+    const [titulaciones] = await pool.query(
+      `SELECT t.nombre AS nombreTitulacion 
+      FROM miembro_titulaciones mt JOIN titulaciones t ON mt.idTitulacion = t.idTitulacion 
+      WHERE mt.idMiembro = 1;`,
       [id]
     );
 
@@ -51,6 +63,7 @@ router.get("/detalle/:id", async (req, res) => {
       proyectos: proyectos,
       idiomas: idiomas,
       tecnologias: tecnologias,
+      titulaciones: titulaciones, // Agregar las titulaciones a los datos enviados a la vista
     });
   } catch (error) {
     console.error("Error obteniendo los datos del miembro:", error.message);
@@ -59,3 +72,6 @@ router.get("/detalle/:id", async (req, res) => {
 });
 
 module.exports = router;
+
+
+//SELECT t.nombre AS nombreTitulacion FROM miembro_titulaciones mt JOIN titulaciones t ON mt.idTitulacion = t.idTitulacion WHERE mt.idMiembro = 1;

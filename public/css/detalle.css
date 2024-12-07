@@ -87,9 +87,7 @@ body {
 
 
 
-#apartado-idiomas {
-    margin-top: 30px;
-}
+
 
 #apartado-contacto {
     margin-top: 30px;
@@ -127,6 +125,14 @@ body {
 #apartado-contacto a:hover, #apartado-contacto p:hover{
     transform: scale(1.1);
     
+}
+
+#idiomas-y-titulaciones{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+    justify-content: space-between;
 }
 
 
