@@ -16,7 +16,7 @@ app.set("view engine", "handlebars");
 
 // Usar las rutas importadas
 app.use("/", miembrosRoutes);  // Las rutas relacionadas con los miembros
-app.use("/trabajos", trabajosRoutes);  // Las rutas relacionadas con los trabajos
+app.use("/", trabajosRoutes);  // Las rutas relacionadas con los trabajos
 
 // Ruta para política
 app.get("/politica", (req, res) => {
